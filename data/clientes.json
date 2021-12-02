@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "nome": "Leonardo",
+    "endereco": "Jk 3161",
+    "cep": 96020045,
+    "data_de_nascimento": 12021999,
+    "telefone": 51984270077
+  },
+  {
+    "id": "2",
+    "nome": "Matheus",
+    "endereco": "Anchieta 100",
+    "cep": 98348555,
+    "data_de_nascimento": 16082003,
+    "telefone": 51986060770
+  },
+  {
+    "id": "3",
+    "nome": "Eduardo",
+    "endereco": "Barrosso 210",
+    "cep": 96178500,
+    "data_de_nascimento": 24112005,
+    "telefone": 53989891234
+  },
+  {
+    "id": "4",
+    "nome": "Murilo",
+    "endereco": "Deodoro 147",
+    "cep": 96170020,
+    "data_de_nascimento": 14112010,
+    "telefone": 53928544231
+  },
+  {
+    "id": "5",
+    "nome": "Renata",
+    "endereco": "Tiradentes 480",
+    "cep": 98123000,
+    "data_de_nascimento": 22022021,
+    "telefone": 53918848596
+  }
+]
