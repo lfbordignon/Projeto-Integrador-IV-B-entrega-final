@@ -1,82 +1,70 @@
-const express = require("express");
-const app = express();
-const router = express.Router();
-const file = require('fs');
-app.use(express.json({extended: true}));
+const express = require('express')
+const server = express()
+const router = express.Router()
+const fs = require('fs')
+server.use(express.json({ extended: true }))
 
-
-//Criar uma função de leitura de arquivo
+// Função ler arquivo
 const readFile = () => {
-    const conteudo = file.readFileSync('./lista/clientes.json','utf-8');
-    return (JSON.parse(conteudo));
-
+    const content = fs.readFileSync('./data/clientes.json', 'utf-8')
+    return JSON.parse(content)
 }
 
-//Função para escrever arquivo
-const writeFile = (arquivo) => {
-    const updateFile = JSON.stringify(arquivo);
-    file.writeFileSync('./lista/clientes.json', updateFile, 'utf-8');
+const writeFile = (content) => {
+    const updateFile = JSON.stringify(content)
+    fs.writeFileSync('./data/clientes.json', updateFile, 'utf-8')
 }
 
-//Rota GET leitura e mostra dados
-router.get('/', function(req,res){
-    const content = readFile();
-    res.send(content);
-});
-
-//Rota GET para ler e mostrar dados de um determinado ID
-router.get('/:id', function(req,res){
-    const {id} = req.params;
-    const conteudo = readFile();
-    const cliente = conteudo.find(cli => cli.id == id);
-    if(!cliente) return res.status(204).json();
-    res.send(cliente);
-});
-
-//Rota POST inserção de dados
-router.post('/', function(req,res){
-    const conteudo = readFile();
-    const { nome, endereco, cep, data_de_nascimento, telefone} = req.body;
-    const id = Math.random().toString(32).substr(2.9);
-    conteudo.push({ id, nome, endereco, cep, data_de_nascimento, telefone});
-    writeFile(conteudo);
-    res.send(conteudo);
-});
-
-// Rota PUT é para atualizar dados
-router.put('/:id',function(req,res) {
-    const {id} = req.params;
-    const { nome, endereco, cep, data_de_nascimento, telefone} = req.body;
-    const conteudo = readFile();
-    const cliente = conteudo.findIndex(cli => cli.id == id);
-    const { id: nId, nome: nNome, endereco: nEndereco, cep: nCep, data_de_nascimento: nData_de_nascimento, telefone: nTelefone } = conteudo[cliente];
-
-    const novoObjeto = {
-        id: nId,
-        nome: nome ? nome : nNome,
-        endereco: endereco ? endereco : nEndereco,
-        cep: cep ? cep : nCep,
-        data_de_nascimento: data_de_nascimento ? data_de_nascimento : nData_de_nascimento,
-        telefone: telefone ? telefone : nTelefone,
-    };
-    conteudo[cliente] = novoObjeto;
-    writeFile(conteudo);
-    res.send(novoObjeto);
+// ROTA GET (retorna todos os itens)
+router.get('/', function (req, res) {
+    const content = readFile()
+    res.send(content)
 })
 
-
-// Rota DELETE é para deletar dados
-router.delete('/:id',function (req,res) {
-    const {id} = req.params;
-    const conteudo = readFile();
-    const cliente = conteudo.findIndex(cli => cli.id === id );
-    if(!cliente) return res.status(204).json('Erro no codigo!');
-    conteudo.splice(cliente, 1); // parametro cliente deleta e o nr '1' diz a quantidade
-    writeFile(conteudo);
-    res.send('Excluído com sucesso!');
+// ROTA POST (posta um item novo)
+router.post('/', function (req, res) {
+    const currentContent = readFile()
+    const { nome, endereco, cep, dataDeNascimento, telefone } = req.body
+    const cliente_id = Math.random().toString(32).substr(2.9)
+    currentContent.push({ cliente_id, nome, endereco, cep, dataDeNascimento, telefone })
+    writeFile(currentContent)
+    res.send(currentContent)
 })
 
-app.use(router);
-app.listen(3000, function(){
-    console.log('Servidor na escuta!')
-});
+// ROTA PUT (atualiza um item selecionado)
+router.put('/:cliente_id', function (req, res) {
+    const { cliente_id } = req.params
+    const { nome, endereco, cep, dataDeNascimento, telefone } = req.body
+    const currentContent = readFile()
+    const selectedItem = currentContent.findIndex((item) => item.cliente_id === cliente_id)
+    const { cliente_id: cCId, nome: cNome, endereco: cEndereco, cep: cCep, dataDeNascimento: cDataDeNascomento, telefone: cTelefone } = currentContent[selectedItem]
+    const newObject = {
+        cliente_id: cCId,
+        nome: nome ? nome : cNome,
+        endereco: endereco ? endereco : cEndereco,
+        cep: cep ? cep : cCep,
+        dataDeNascimento: dataDeNascimento ? dataDeNascimento : cDataDeNascomento,
+        telefone: telefone ? telefone : cTelefone,
+    }
+    currentContent[selectedItem] = newObject
+    writeFile(currentContent)
+    res.send(currentContent)
+})
+
+//ROTA DELETE(deleta um item selecionado) 
+
+router.delete('/:cliente_id', function (req, res) {
+    const { cliente_id } = req.params
+    const currentContent = readFile()
+    const selectedItem = currentContent.findIndex((item) => item.cliente_id === cliente_id)
+    currentContent.splice(selectedItem, 1)
+    writeFile(currentContent)
+    res.send("Foi Excluido!!")
+})
+
+//Função para inicar o servidor na porta 3000, com retono de uma mensagem que esta rodando ok.
+
+server.use(router)
+server.listen(3000, function () {
+    console.log('Conectado na porta 3000!')
+})
