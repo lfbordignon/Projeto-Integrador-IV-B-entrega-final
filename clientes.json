@@ -1,43 +1,44 @@
- [
-    {
-      "cliente_id": "1",
-      "nome": "Leonardo",
-      "endereco": "Jk 3161",
-      "cep": 96020045,
-      "dataDeNascimento": 12021999,
-      "telefone": 51984270077
-    },
-    {
-      "cliente_id": "2",
-      "nome": "Matheus",
-      "endereco": "Anchieta 100",
-      "cep": 98348555,
-      "dataDeNascimento": 16082003,
-      "telefone": 51986060770
-    },
-    {
-      "cliente_id": "3",
-      "nome": "Eduardo",
-      "endereco": "Barrosso 210",
-      "cep": 96178500,
-      "dataDeNascimento": 24112005,
-      "telefone": 53989891234
-    },
-    {
-      "cliente_id": "4",
-      "nome": "Murilo",
-      "endereco": "Deodoro 147",
-      "cep": 96170020,
-      "dataDeNascimento": 14112010,
-      "telefone": 53928544231
-    },
-    {
-      "cliente_id": "5",
-      "nome": "Renata",
-      "endereco": "Tiradentes 480",
-      "cep": 98123000,
-      "dataDeNascimento": 22022021,
-      "telefone": 53918848596
-    }
-  
-  ]
+
+[
+  {
+    "id": 1,
+    "nome": "Leonardo",
+    "endereco": "Jk 3161",
+    "cep": "96020-045",
+    "nascimento": "12-02-1999",
+    "telefone": "(51)98427-0077"
+  },
+  {
+    "id": 2,
+    "nome": "Matheus",
+    "endereco": "Anchieta 100",
+    "cep": "98348-555",
+    "nascimento": "05-08-2003",
+    "telefone": "(51)98606-0770"
+  },
+  {
+    "id": 3,
+    "nome": "Eduardo",
+    "endereco": "Barrosso 210",
+    "cep": "96178-500",
+    "nascimento": "24-11-2005",
+    "telefone": "(53)98989-1234"
+  },
+  {
+    "id": 4,
+    "nome": "Murilo",
+    "endereco": "Deodoro 147",
+    "cep": "96170-020",
+    "nascimento": "14-11-2010",
+    "telefone": "(53)92854-4231"
+  },
+  {
+    "id": 5,
+    "nome": "Renata",
+    "endereco": "Tiradentes 480",
+    "cep": "98123-000",
+    "nascimento": "22-02-2021",
+    "telefone": "(53)91884-8596"
+  }
+]
+

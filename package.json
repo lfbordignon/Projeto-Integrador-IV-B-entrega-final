@@ -1,14 +1,13 @@
 {
-  "name": "final",
+  "name": "projeto_integrador",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon",
+    "start": "node app.js"
   },
-
-  "author": "Leonardo",
+  "author": "Leonardo Bordignon",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
