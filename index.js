@@ -6,13 +6,13 @@ server.use(express.json({ extended: true }))
 
 // Função ler arquivo
 const readFile = () => {
-    const content = fs.readFileSync('./data/clientes.json', 'utf-8')
+    const content = fs.readFileSync('./clientes.json', 'utf-8')
     return JSON.parse(content)
 }
 
 const writeFile = (content) => {
     const updateFile = JSON.stringify(content)
-    fs.writeFileSync('./data/clientes.json', updateFile, 'utf-8')
+    fs.writeFileSync('./clientes.json', updateFile, 'utf-8')
 }
 
 // ROTA GET (retorna todos os itens)
